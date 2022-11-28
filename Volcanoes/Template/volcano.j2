@@ -1,0 +1,200 @@
+{% macro Infobox(Longitude,Latitude,Volcano_name_Transliterated,Elevation,T_M1,T_M2,T_M3,T_M4,T_M5,T_m1 ,Last_Eruption_Year,Population_within_100_km,Population_within_10_km,Population_within_5_km,Population_within_30_km,T_Geographical_history,T_Region,T_Country) %}
+	{{'{{Infobox mountain'}}
+	|name   = {{Volcano_name_Transliterated }}
+
+	{%- if Elevation != 'nan' %}
+	    |elevation_m       ={{Elevation}}.
+	{%- endif %}
+    
+    {%- if Latitude != 'nan' %}
+	    |coordinates       =అక్షాంశం :{{Latitude}}, రేఖాంశం : {{Longitude}}
+	{%- endif %}
+    
+    {%- if Last_Eruption_Year != 'నాన్' %}
+	    |last_eruption       ={{Last_Eruption_Year}}
+	{%- endif %}    
+    
+    {%- if T_Country != 'నాన్' %}
+	    |location       ={{T_Region}},{{T_Country}}
+	{%- endif %}
+    
+	{{'}}\n'}}
+{% endmacro -%}
+
+
+
+
+
+{%- macro intro(Longitude,Latitude,Volcano_name_Transliterated,Elevation,T_M1,T_M2,T_M3,T_M4,T_M5,T_m1 ,Last_Eruption_Year,Population_within_100_km,Population_within_10_km,Population_within_5_km,Population_within_30_km,T_Geographical_history,T_Region,T_Country) -%}
+    
+    {% if T_Country == 'నాన్' -%}
+    {%- set line =[
+    "ఈ అగ్నిపర్వతం పేరు "+ Volcano_name_Transliterated+"."
+    ] |random
+    -%}
+    {{-line-}}
+    {% endif %}
+
+
+    {% if T_Country != 'నాన్' -%}
+    {%- set line =[
+    Volcano_name_Transliterated+"  అనే పేరుగల   అగ్నిపర్వతం "+T_Region+" ప్రాంతం,"+T_Country+" దేశంలో ఉంది.",
+    Volcano_name_Transliterated+" , "+T_Region+" ప్రాంతం,"+T_Country +" దేశంలో  ఉన్న అగ్నిపర్వతం."] |random
+    -%}
+    {{-line-}}
+    {% endif %}
+    
+    {%- if volcano_number != 'nan' -%}
+	{%- set line =[
+        "ఈ అగ్నిపర్వత సంఖ్య "+Volcano_Number+".",
+        Volcano_Number+" ఈ అగ్నిపర్వత సంఖ్య."
+        ]|random
+		-%}
+		{{-line-}}
+	{%- endif %}
+
+
+    {%- if T_Primary_Volcano_Type != 'నాన్' -%}
+	{%- set line =[
+        "ఈ అగ్నిపర్వతం ప్రాథమిక రకం "+T_Primary_Volcano_Type+".",
+        "ఈ అగ్నిపర్వతాన్ని "+T_Primary_Volcano_Type+" అగ్నిపర్వతంగా వర్గీకరిస్తారు.",
+        "దీని ప్రధాన రకం "+T_Primary_Volcano_Type+"."
+        ]|random
+		-%}
+		{{-line-}}
+	{%- endif %}
+
+
+    {%- if Last_Eruption_Year != 'నాన్' -%}
+	{%- set line =[
+    "ఈ అగ్నిపర్వతం నుండి చివరగ వెలువడిన విస్ఫోటనం "+Last_Eruption_Year+" సంవత్సరంలో జరిగింది.",
+    ", అత్యంత ఇటీవలి విస్ఫోటనం  "+Last_Eruption_Year+" లో సంభవించింది.",
+    "ఈ "+Volcano_name_Transliterated+"  అగ్నిపర్వతం చివరిసారిగా  "+Last_Eruption_Year+" లో విస్ఫోటనం చెందింది."    
+    ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+   {%- if Latitude != 'nan' -%}
+	{%- set line =[
+    "ఈ అగ్నిపర్వత అక్షాంశం "+Latitude+" ,రేఖాంశం "+Longitude+".",
+    "ఈ అగ్నిపర్వతం "+Latitude+" డిగ్రీల అక్షాంశం మరియు "+Longitude+" డిగ్రీల రేఖాంశంలో ఉంది.",
+    "ఈ అగ్నిపర్వతం "+Latitude+" డిగ్రీల అక్షాంశం మరియు "+Longitude+" డిగ్రీల రేఖాంశం మద్యలో లో ఉంటుంది."
+    ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+    
+    {%- if Elevation != 'nan' -%}
+	{%- set line =[
+    "ఈ అగ్నిపర్వతంసముద్ర మట్టానికి "+Elevation+" ఎత్తులో ఉంది.",
+    "సముద్ర మట్టానికి "+Elevation+" మీటర్ల ఎత్తులో  ఈ అగ్నిపర్వతం ఉంది.",
+    "ఈ అగ్నిపర్వతం యొక్క శిఖరం సముద్ర మట్టానికి "+Elevation+" మీటర్ల ఎత్తులో ఉంది."
+    ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}    
+  
+    {%- if T_M1 != 'nan' -%}
+	{%- set line =[
+    "ఈ అగ్నిపర్వతం ప్రధానంగా శిల "+T_M1+" తో ఏర్పడింది.",
+    "ఈ అగ్నిపర్వతం యొక్క ప్రాధమిక శిల "+T_M1+". ",
+    T_M1+" అనేది అగ్నిపర్వతం యొక్క ప్రాథమిక శిల."
+       ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+    {%- if T_M2 != 'nan' -%}
+	{%- set line =[
+    "తదుపరి ముఖ్య  శిలలు "+T_M2+" "+T_M3+" "+T_M4+" "+T_M5+".",
+    T_M2+" "+T_M3+" "+T_M4+" "+T_M5+"తరువాతి అత్యంత ముఖ్యమైన శిలలు.",
+    T_M2+" "+T_M3+" "+T_M4+" "+T_M5+"అనే శిలలు తరువాతి అత్యంత ముఖ్యమైనవి.",
+    T_M2+" "+T_M3+" "+T_M4+" "+T_M5+"తరువాతి అత్యంత క్లిష్టమైన శిలలు."    
+       ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+
+    {%- if T_m1 != 'నాన్' -%}
+	{%- set line =[
+    "ఈ అగ్నిపర్వత ఇతర  శిలలు "+T_m1+" "+T_m2+".",
+    T_m1+" "+T_m2+"అనేవి ఇతర గుర్తించదగిన శిలలు."
+    ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+
+    {%- if Population_within_5_km != 'nan' -%}
+	{%- set line =[
+    Volcano_name_Transliterated+" అగ్నిపర్వతం నుండి ఐదు కిలోమీటర్ల వ్యవధిలో ఉన్న జనాబ సుమారు "+Population_within_5_km+".",    
+    Volcano_name_Transliterated+" అగ్నిపర్వతం ఐదు కిలోమీటర్ల పరిధిలో సుమారు "+Population_within_5_km+" మంది జనాభాను కలిగి ఉంది.",
+    
+        ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+    {%- if Population_within_10_km != 'nan' -%}
+	{%- set line =[
+    Volcano_name_Transliterated+" అగ్నిపర్వతం నుండి పది కిలోమీటర్ల వ్యవధిలో ఉన్న జనాబ సుమారు "+Population_within_10_km+".",    
+    Volcano_name_Transliterated+" అగ్నిపర్వతం పది కిలోమీటర్ల పరిధిలో సుమారు "+Population_within_10_km+" మంది జనాభాను కలిగి ఉంది.",
+    
+        ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+    {%- if Population_within_30_km != 'nan' -%}
+	{%- set line =[
+    Volcano_name_Transliterated+" అగ్నిపర్వతం నుండి ముప్పై కిలోమీటర్ల వ్యవధిలో ఉన్న జనాబ సుమారు "+Population_within_30_km+".",    
+    Volcano_name_Transliterated+" అగ్నిపర్వతం ముప్పై కిలోమీటర్ల పరిధిలో సుమారు "+Population_within_30_km+" మంది జనాభాను కలిగి ఉంది.",
+    
+        ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+
+    {%- if Population_within_100_km != 'nan' -%}
+	{%- set line =[
+    Volcano_name_Transliterated+" అగ్నిపర్వతం నుండి వంద కిలోమీటర్ల వ్యవధిలో ఉన్న జనాబ సుమారు "+Population_within_100_km+".",    
+    Volcano_name_Transliterated+" అగ్నిపర్వతం వంద కిలోమీటర్ల పరిధిలో సుమారు "+Population_within_100_km +" మంది జనాభాను కలిగి ఉంది.",
+    
+        ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+
+    {%- if T_Geographical_history != 'నాన్' -%}
+	{%- set line =[
+    "ఈ అగ్నిపర్వతం యొక్క  భౌగోళిక చరిత్ర "+T_Geographical_history,
+    "ఈ అగ్నిపర్వతం యొక్క  భౌగోళిక గతం "+T_Geographical_history
+
+        ]|random
+	-%}
+	{{-line-}}
+    {%- endif %}
+
+{%- endmacro -%}
+
+{%- macro categories(T_Primary_Volcano_Type) -%}
+    
+    [[వర్గం : అగ్నిపర్వతాలు]]
+    [[ వర్గం : తెవికీ అగ్నిపర్వతాలు]]
+    {%- if T_Primary_Volcano_Type != 'నాన్' -%}
+    [[వర్గం : {{T_Primary_Volcano_Type}} అగ్నిపర్వతాలు]]
+    {%- endif %}
+    [[వర్గం : అగ్నిపర్వతాల జాబితా]]
+{%- endmacro -%}
+
+
+{{ Infobox(Longitude,Latitude,Volcano_name_Transliterated,Elevation,T_M1,T_M2,T_M3,T_M4,T_M5,T_m1 ,Last_Eruption_Year,Population_within_100_km,Population_within_10_km,Population_within_5_km,Population_within_30_km,T_Geographical_history,T_Region,T_Country) -}}
+
+{{ intro(Longitude,Latitude,Volcano_name_Transliterated,Elevation,T_M1,T_M2,T_M3,T_M4,T_M5,T_m1 ,Last_Eruption_Year,Population_within_100_km,Population_within_10_km,Population_within_5_km,Population_within_30_km,T_Geographical_history,T_Region,T_Country) -}}
+
+{{ categories(T_Primary_Volcano_Type) -}}
